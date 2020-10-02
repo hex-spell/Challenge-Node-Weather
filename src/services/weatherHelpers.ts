@@ -11,8 +11,8 @@ const randomIntFromInterval = (min: number, max: number) =>
 // con variables de clima al azar
 export const weatherObjFactory = (city: City) => ({
   coord: {
-    lon: city.lng,
-    lat: city.lat,
+    lon: Number.parseFloat(city.lng),
+    lat: Number.parseFloat(city.lat),
   },
   // obtiene un elemento al azar del arreglo de descripciones de clima
   weather: [
@@ -22,10 +22,10 @@ export const weatherObjFactory = (city: City) => ({
   ],
   base: '',
   main: {
-    temp: randomIntFromInterval(0, 313),
-    feels_like: randomIntFromInterval(0, 313),
-    temp_min: randomIntFromInterval(0, 313),
-    temp_max: randomIntFromInterval(0, 313),
+    temp: randomIntFromInterval(273, 313),
+    feels_like: randomIntFromInterval(273, 313),
+    temp_min: randomIntFromInterval(273, 313),
+    temp_max: randomIntFromInterval(273, 313),
     pressure: randomIntFromInterval(980, 1020),
     humidity: randomIntFromInterval(0, 100),
   },

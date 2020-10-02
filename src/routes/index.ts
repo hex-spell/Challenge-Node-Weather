@@ -5,7 +5,7 @@ import cities from './cities';
 const mainRouter = Router();
 
 mainRouter.get('/', (req, res) => {
-  res.send('App and routes working');
+  res.send('Rutas funcionando');
 });
 
 mainRouter.use('/weather', weather);

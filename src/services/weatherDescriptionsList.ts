@@ -18,7 +18,7 @@ const iconCodes = {
   mist: '50d',
 };
 
-// esto debería pasarlo a una base de datos, pero por ahora lo dejo acá
+// esto debería pasarlo a una base de datos, pero por ahora lo dejo acá, ya que es un plus
 const weatherDescriptionsList: WeatherDescription[] = [
   {
     id: 0,

@@ -8,12 +8,15 @@ import app from './app';
 import connectDB from './connectDB';
 
 // conectar a mongodb
-connectDB();
+connectDB()
+  .then(() => {
+    const port = process.env.PORT || 4000;
 
-const port = process.env.PORT || 3000;
-
-// ejecutar server de express
-app.listen(port, () => {
+    // ejecutar server de express
+    app.listen(port, () => {
+      // tslint:disable-next-line: no-console
+      console.log(`Servidor iniciado en el port ${port}!`);
+    });
+  })
   // tslint:disable-next-line: no-console
-  console.log(`Servidor iniciado en el port ${port}!`);
-});
+  .catch((err: Error) => console.log(err));

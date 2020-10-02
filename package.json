@@ -6,6 +6,7 @@
   "author": "Vagus-art <agustin.favo@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/cors": "^2.8.7",
     "@types/express": "^4.17.8",
     "@types/mongoose": "^5.7.36",
     "@types/node": "^14.11.2",
@@ -26,12 +27,14 @@
   "scripts": {
     "start:dev": "nodemon -e ts",
     "build": "tsc",
+    "start": "node build/index.js",
     "tslint": "tslint --project tsconfig.json",
     "prettier:base": "prettier --parser typescript --single-quote",
     "prettier:check": "yarn run prettier:base -- --list-different src/**/*.ts{,x}",
     "prettier:write": "yarn run prettier:base -- --write src/**/*.ts{,x}"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.10.7"
