@@ -1,8 +1,12 @@
-import { City } from "../models";
+import { City } from '../models';
 
 export default {
   // busqueda case-insensitive de ciudad
   findCity: async (cityName: string) => {
-    return await City.findOne({ name: new RegExp(cityName, "i") }).exec();
+    const cityResult = await City.findOne({
+      name: new RegExp(cityName, 'i'),
+    }).exec();
+    const cityObj = cityResult?.toObject() || {};
+    return cityObj;
   },
 };

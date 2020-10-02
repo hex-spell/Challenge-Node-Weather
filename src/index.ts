@@ -1,11 +1,11 @@
-import dotenv from "dotenv";
-import path from "path";
+import dotenv from 'dotenv';
+import path from 'path';
 
 // agrego variables de entorno de la carpeta root
-dotenv.config({ path: path.join(__dirname, "/../.env") });
+dotenv.config({ path: path.join(__dirname, '/../.env') });
 
-import app from "./app";
-import connectDB from "./connectDB";
+import app from './app';
+import connectDB from './connectDB';
 
 // conectar a mongodb
 connectDB();

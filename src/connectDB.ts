@@ -1,9 +1,9 @@
-import { ConnectionOptions, connect } from "mongoose";
+import { ConnectionOptions, connect } from 'mongoose';
 
 const connectDB = async () => {
   try {
     const mongoURI: string =
-      process.env.MONGO_URI || "mongodb://localhost:27017/";
+      process.env.MONGO_URI || 'mongodb://localhost:27017/';
     const options: ConnectionOptions = {
       useNewUrlParser: true,
       useCreateIndex: true,
@@ -12,7 +12,7 @@ const connectDB = async () => {
     };
     await connect(mongoURI, options);
     // tslint:disable-next-line: no-console
-    console.log("Base de datos conectada...");
+    console.log('Base de datos conectada...');
   } catch (err) {
     // tslint:disable-next-line: no-console
     console.error(err.message);

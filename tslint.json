@@ -7,9 +7,10 @@
   ],
   "jsRules": {},
   "rules": {
-    "quotemark": [true, "double"],
+    "quotemark": [true, "single"],
     "whitespace": true,
-    "trailing-comma": false
+    "trailing-comma": false,
+    "ter-computed-property-spacing": false
   },
   "rulesDirectory": []
 }

@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model } from 'mongoose';
 
 const citySchema = new Schema(
   {
@@ -7,7 +7,23 @@ const citySchema = new Schema(
     lat: String,
     lng: String,
   },
-  { collection: "cities", collation: { locale: "en", strength: 2 } }
+  {
+    collection: 'cities',
+    collation: { locale: 'en', strength: 2 },
+    toObject: {
+      transform: (doc, ret) => {
+        delete ret._id;
+      },
+    },
+  }
 );
 
-export default model("City", citySchema);
+export default model('City', citySchema);
+
+// tipo para typescript
+export type City = {
+  country: string;
+  name: string;
+  lat: string;
+  lng: string;
+};
