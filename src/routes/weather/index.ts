@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import citiesService from '../../services/citiesService';
-import { weatherObjFactory } from '../../services/weatherHelpers';
-import { weather404 } from '../../services/errorResponses';
+import { weatherObjFactory } from '../../helpers/weatherHelpers';
+import { weatherNotFound } from '../../helpers/errorResponses';
 
 const weather = Router();
 
@@ -12,7 +12,7 @@ weather.get('/', async (req, res) => {
     const weatherObj = weatherObjFactory(result);
     res.send(weatherObj);
   } else {
-    res.status(404).send(weather404);
+    res.status(404).send(weatherNotFound);
   }
 });
 

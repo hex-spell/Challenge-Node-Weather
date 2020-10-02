@@ -4,6 +4,7 @@ import cors from 'cors';
 
 const app = express();
 // cors permitir a todos
+app.use(express.json());
 app.use(cors({ origin: '*' }));
 app.use(routes);
 

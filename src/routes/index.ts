@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import weather from './weather';
-import cities from './cities';
+import users from './users';
 
 const mainRouter = Router();
 
@@ -9,6 +9,6 @@ mainRouter.get('/', (req, res) => {
 });
 
 mainRouter.use('/weather', weather);
-mainRouter.use('/cities', cities);
+mainRouter.use('/users', users);
 
 export default mainRouter;
