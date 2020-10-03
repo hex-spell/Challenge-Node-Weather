@@ -10,7 +10,8 @@
     "quotemark": [true, "single"],
     "whitespace": true,
     "trailing-comma": false,
-    "ter-computed-property-spacing": false
+    "ter-computed-property-spacing": false,
+    "ter-arrow-parens": false
   },
   "rulesDirectory": []
 }

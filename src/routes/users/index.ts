@@ -1,4 +1,4 @@
-import { Response, Router } from 'express';
+import { NextFunction, Response, Router } from 'express';
 import usersService from '../../services/usersService';
 import { body, validationResult } from 'express-validator';
 import { Request } from 'express-validator/src/base';
@@ -14,7 +14,7 @@ users.post(
     // password tiene que tener minimo 5 chars
     body('password').isLength({ min: 5 }),
   ],
-  async (req: Request, res: Response) => {
+  async (req: Request, res: Response, next: NextFunction) => {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -26,9 +26,7 @@ users.post(
       );
       res.send(response);
     } catch (err) {
-      if (err.cod) {
-        res.status(err.cod).send(err);
-      }
+      next(err);
     }
   }
 );
@@ -40,7 +38,7 @@ users.post(
     // password tiene que tener minimo 5 chars
     body('password').isLength({ min: 5 }),
   ],
-  async (req: Request, res: Response) => {
+  async (req: Request, res: Response, next: NextFunction) => {
     try {
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -52,9 +50,7 @@ users.post(
       );
       res.send(response);
     } catch (err) {
-      if (err.cod) {
-        res.status(err.cod).send(err);
-      }
+      next(err);
     }
   }
 );

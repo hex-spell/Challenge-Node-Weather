@@ -14,11 +14,6 @@ const userSchema = new Schema(
   },
   {
     collection: 'users',
-    toObject: {
-      transform: (doc, ret) => {
-        delete ret._id;
-      },
-    },
   }
 );
 

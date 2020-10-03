@@ -12,24 +12,20 @@ const jwtSecret = process.env.JWT_SECRET || 'default';
 export default {
   createUser: async (email: string, password: string) => {
     const userExists = await User.exists({ email });
-    if (!userExists) {
-      const hashedPassword = await hash(password, 10);
-      return await User.create({ email, password: hashedPassword });
+    if (userExists) {
+      throw userAlreadyExists;
     }
-    throw userAlreadyExists;
+    const hashedPassword = await hash(password, 10);
+    return await User.create({ email, password: hashedPassword });
   },
   changePassword: async (id: number, password: string) => {
-    try {
-      const hashedPassword = await hash(password, 10);
-      const user = await User.findById(id);
-      if (!user) {
-        return userNotFound;
-      }
-      user.set({ password: hashedPassword });
-      return await user.save();
-    } catch (err) {
-      throw new Error(`Error in usersService, changePassword: ${err}`);
+    const user = await User.findById(id);
+    if (!user) {
+      throw userNotFound;
     }
+    const hashedPassword = await hash(password, 10);
+    user.set({ password: hashedPassword });
+    return await user.save();
   },
   login: async (email: string, password: string) => {
     const user = await User.findOne({ email }).exec();

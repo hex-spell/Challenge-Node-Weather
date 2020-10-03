@@ -8,12 +8,8 @@ const weather = Router();
 weather.get('/', async (req, res) => {
   const cityName = req.query.q?.toString() || '';
   const result = await citiesService.findCity(cityName);
-  if (result) {
-    const weatherObj = weatherObjFactory(result);
-    res.send(weatherObj);
-  } else {
-    res.status(404).send(weatherNotFound);
-  }
+  const weatherObj = weatherObjFactory(result);
+  res.send(weatherObj);
 });
 
 export default weather;
