@@ -11,6 +11,7 @@ import expressJwt from 'express-jwt';
 
 const users = Router();
 
+// crear usuario
 users.post(
   '/',
   [
@@ -30,6 +31,30 @@ users.post(
         req.body.password
       );
       res.send(response);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+// cambiar contraseña
+users.put(
+  '/',
+  [
+    // password tiene que tener minimo 5 chars
+    body('password').isLength({ min: 5 }),
+  ],
+  expressJwt({ secret: jwtSecret, algorithms: ['HS256'] }),
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        throw userValidation;
+      }
+      const isPasswordChanged = await usersService.changePassword(
+        req.user.id,
+        req.body.password
+      );
+      res.send(isPasswordChanged);
     } catch (err) {
       next(err);
     }
@@ -59,6 +84,7 @@ users.post(
     }
   }
 );
+// obtener usuario por id
 users.get(
   '/id/:id',
   [param('id').isString()],

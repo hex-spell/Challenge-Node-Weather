@@ -30,7 +30,8 @@ export default {
     }
     const hashedPassword = await hash(password, 10);
     user.set({ password: hashedPassword });
-    return await user.save();
+    const saveResponse = await user.save();
+    return !!saveResponse;
   },
   login: async (email: string, password: string) => {
     const user = await User.findOne({ email }).exec();

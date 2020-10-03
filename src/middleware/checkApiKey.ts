@@ -13,6 +13,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     if (!exists) {
       throw unauthorized;
     }
+    next();
   } catch (err) {
     next(err);
   }
