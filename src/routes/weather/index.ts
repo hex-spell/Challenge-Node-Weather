@@ -1,11 +1,11 @@
 import { Router } from 'express';
 import citiesService from '../../services/citiesService';
 import { weatherObjFactory } from '../../helpers/weatherHelpers';
-import { weatherNotFound } from '../../helpers/errorResponses';
+import checkApiKey from '../../middleware/checkApiKey';
 
 const weather = Router();
 
-weather.get('/', async (req, res) => {
+weather.get('/', checkApiKey, async (req, res) => {
   const cityName = req.query.q?.toString() || '';
   const result = await citiesService.findCity(cityName);
   const weatherObj = weatherObjFactory(result);

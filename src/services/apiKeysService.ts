@@ -1,22 +1,29 @@
 import { ApiKey } from '../models';
 import { v4 as uuidv4 } from 'uuid';
+import { ApiKeyType } from '../models/ApiKey';
+import { userInvalidCredentials } from '../helpers/errorResponses';
 
 export default {
-  createApiKey: async (userId: number) => {
+  createApiKey: async (userId: string) => {
     const key = uuidv4();
     return await ApiKey.create({ userId, key });
   },
-  getApiKeysByUserId: async (userId: number) => {
-    const apiKeys = await ApiKey.find({ userId }).exec((err, docs) => {
-      // tslint:disable-next-line: max-line-length
-      // https://stackoverflow.com/questions/12210870/how-to-get-array-of-json-objects-rather-than-mongoose-documents
-      // retornar arreglo de objetos de mongoose
-      // tslint:disable-next-line: no-parameter-reassignment
-      docs = docs.map((o) => o.toObject());
-    });
+  getApiKeysByUserId: async (userId: string) => {
+    const apiKeys = await ApiKey.find({ userId }).exec();
     return apiKeys;
   },
-  deleteApiKeyById: async (apiKeyId: number) => {
+  getApiKeyById: async (apiKeyId: string) => {
+    const apiKey = await ApiKey.findById(apiKeyId).exec();
+    if (!apiKey) {
+      throw userInvalidCredentials;
+    }
+    const apiKeyObj: ApiKeyType = apiKey.toObject();
+    return apiKeyObj;
+  },
+  deleteApiKeyById: async (apiKeyId: string) => {
     return await ApiKey.findByIdAndDelete(apiKeyId);
+  },
+  exists: async (apiKey: string) => {
+    return await ApiKey.exists({ key: apiKey });
   },
 };

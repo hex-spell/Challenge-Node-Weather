@@ -17,7 +17,11 @@ export default {
       throw userAlreadyExists;
     }
     const hashedPassword = await hash(password, 10);
-    return await User.create({ email, password: hashedPassword });
+    const createdUser = await User.create({ email, password: hashedPassword });
+    const createdUserObj = createdUser.toObject();
+    // prevengo que el campo de password sea retornado
+    delete createdUserObj.password;
+    return createdUserObj;
   },
   changePassword: async (id: number, password: string) => {
     const user = await User.findById(id);
@@ -53,6 +57,8 @@ export default {
       throw userNotFound;
     }
     const userObj = user.toObject();
+    // prevengo que el campo de password sea retornado
+    delete userObj.password;
     return userObj;
   },
 };

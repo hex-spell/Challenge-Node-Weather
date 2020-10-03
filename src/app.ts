@@ -18,7 +18,7 @@ app.use(cors({ origin: '*' }));
 
 app.use(routes);
 
-// error por defecto
+// error tirado si no hay coincidencia en rutas
 app.use((req: Request, res: Response, next: NextFunction) => {
   const error = endpointNotFound;
   next(error);
@@ -35,7 +35,7 @@ app.use(
     if (error.name === 'UnauthorizedError') {
       throw unauthorized;
     }
-    next();
+    next(error);
   }
 );
 

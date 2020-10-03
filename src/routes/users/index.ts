@@ -7,7 +7,7 @@ import {
   unauthorized,
   userValidation,
 } from '../../helpers/errorResponses';
-import expressJwt, { UnauthorizedError } from 'express-jwt';
+import expressJwt from 'express-jwt';
 
 const users = Router();
 
@@ -75,7 +75,7 @@ users.get(
 
       // si el sub del jwt no es igual al id del usuario que se pide retorna unauthorized
       if (user._id.toString() !== req.user.sub) {
-        throw UnauthorizedError;
+        throw unauthorized;
       }
       res.send(user);
     } catch (err) {
