@@ -3,9 +3,11 @@ import routes from './routes';
 import cors from 'cors';
 import {
   endpointNotFound,
+  unauthorized,
   unhandledServerError,
   WeatherAPIError,
 } from './helpers/errorResponses';
+import { UnauthorizedError } from 'express-jwt';
 
 const app = express();
 
@@ -21,6 +23,21 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   const error = endpointNotFound;
   next(error);
 });
+
+// handler de error de express-jwt, lo transformo a mi formato de errores
+app.use(
+  (
+    error: UnauthorizedError,
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    if (error.name === 'UnauthorizedError') {
+      throw unauthorized;
+    }
+    next();
+  }
+);
 
 // handler de errores
 // revisa si el error tirado tiene la propiedad "cod", que indica el status del response

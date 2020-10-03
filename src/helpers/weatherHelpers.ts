@@ -1,4 +1,4 @@
-import { City } from '../models/City';
+import { CityType } from '../models/City';
 import weatherDescriptionsList from './weatherDescriptionsList';
 
 // tslint:disable-next-line: max-line-length
@@ -9,7 +9,7 @@ const randomIntFromInterval = (min: number, max: number) =>
 
 // retorna un objeto con la misma estructura que la api de openweather,
 // con variables de clima al azar
-export const weatherObjFactory = (city: City) => ({
+export const weatherObjFactory = (city: CityType) => ({
   coord: {
     lon: Number.parseFloat(city.lng),
     lat: Number.parseFloat(city.lat),

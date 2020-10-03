@@ -37,3 +37,13 @@ export const unhandledServerError: WeatherAPIError = {
   cod: '500',
   message: 'unhandled server error',
 };
+
+export const badRequest: WeatherAPIError = {
+  cod: '400',
+  message: 'bad request',
+};
+
+export const unauthorized: WeatherAPIError = {
+  cod: '401',
+  message: 'unauthorized',
+};

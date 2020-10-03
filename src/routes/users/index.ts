@@ -1,8 +1,13 @@
 import { NextFunction, Response, Router } from 'express';
-import usersService from '../../services/usersService';
-import { body, validationResult } from 'express-validator';
+import usersService, { jwtSecret } from '../../services/usersService';
+import { body, param, validationResult } from 'express-validator';
 import { Request } from 'express-validator/src/base';
-import { userValidation } from '../../helpers/errorResponses';
+import {
+  badRequest,
+  unauthorized,
+  userValidation,
+} from '../../helpers/errorResponses';
+import expressJwt, { UnauthorizedError } from 'express-jwt';
 
 const users = Router();
 
@@ -49,6 +54,30 @@ users.post(
         req.body.password
       );
       res.send(response);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+users.get(
+  '/id/:id',
+  [param('id').isString()],
+  expressJwt({ secret: jwtSecret, algorithms: ['HS256'] }),
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const errors = validationResult(req);
+      // valida los parametros
+      // y a la vez revisa que de todas formas esté definido el parametro id en el obj req
+      if (!errors.isEmpty() || !req.params?.id) {
+        throw badRequest;
+      }
+      const user = await usersService.getUserById(req.params.id);
+
+      // si el sub del jwt no es igual al id del usuario que se pide retorna unauthorized
+      if (user._id.toString() !== req.user.sub) {
+        throw UnauthorizedError;
+      }
+      res.send(user);
     } catch (err) {
       next(err);
     }

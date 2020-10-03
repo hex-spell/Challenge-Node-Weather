@@ -21,7 +21,7 @@ const citySchema = new Schema(
 export default model('City', citySchema);
 
 // tipo para typescript
-export type City = {
+export type CityType = {
   country: string;
   name: string;
   lat: string;

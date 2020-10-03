@@ -20,7 +20,8 @@ const userSchema = new Schema(
 export default model('User', userSchema);
 
 // tipo para typescript
-export type User = {
+export type UserType = {
   email: string;
   password: string;
+  _id: string;
 };

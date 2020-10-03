@@ -20,7 +20,7 @@ const apiKeySchema = new Schema(
 export default model('ApiKey', apiKeySchema);
 
 // tipo para typescript
-export type ApiKey = {
+export type ApiKeyType = {
   userId: string;
   key: string;
 };

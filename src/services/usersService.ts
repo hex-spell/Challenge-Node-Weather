@@ -6,8 +6,9 @@ import {
   userNotFound,
   userAlreadyExists,
 } from '../helpers/errorResponses';
+import { UserType } from '../models/User';
 
-const jwtSecret = process.env.JWT_SECRET || 'default';
+export const jwtSecret = process.env.JWT_SECRET || 'default';
 
 export default {
   createUser: async (email: string, password: string) => {
@@ -32,19 +33,26 @@ export default {
     if (!user) {
       throw userNotFound;
     }
-    const userObj = user.toObject();
+    const userObj: UserType = user.toObject();
     const isPasswordValid = await compare(password, userObj.password);
     if (!isPasswordValid) {
       throw userInvalidCredentials;
     }
-    // firma un token json con expiracion en 30 dias
-    const jwt = sign(
-      {
-        exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30,
-        id: userObj._id,
-      },
-      jwtSecret
-    );
+    // firma un token json de acceso con expiracion en 1 hora
+    const jwt = sign({}, jwtSecret, {
+      expiresIn: Math.floor(Date.now() / 1000) + 60 * 60,
+      algorithm: 'HS256',
+      // por alguna razón mongoose retorna el id como un tipo que no es string
+      subject: userObj._id.toString(),
+    });
     return { token: jwt };
+  },
+  getUserById: async (userId: number) => {
+    const user = await User.findById(userId).exec();
+    if (!user) {
+      throw userNotFound;
+    }
+    const userObj = user.toObject();
+    return userObj;
   },
 };
