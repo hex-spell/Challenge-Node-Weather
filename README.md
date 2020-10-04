@@ -92,7 +92,7 @@ Las rutas utilizan funciones importadas desde la carpeta `/services`, ahí es do
 
 En `/helpers` es donde guardo los errores que tiro usando `throw` desde cualquier parte del flujo de la aplicación, que son atrapados con un `catch` al final de la cadena de middlewares de express, y enviados como json.
 
-`/helpers/weatherDescriptionsList.ts` tiene un par de descripciones climáticas para ser importadas al azar en el endpoint de clima, dan un texto descriptivo y un código de ícono de openweather.
+`/helpers/weatherDescriptionsList.ts` tiene un par de descripciones climáticas para ser importadas al azar en `/helpers/weatherHelpers.ts`, dan un texto descriptivo y un código de ícono de openweather.
 
 `/helpers/weatherHelpers.ts` es en donde genero los datos climáticos y les doy la estructura de la api de openweather.
 
