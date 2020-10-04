@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-const apiKeySchema = new Schema(
+const apiKeySchema = new Schema<ApiKeyType>(
   {
     userId: {
       required: true,
@@ -14,6 +14,7 @@ const apiKeySchema = new Schema(
   },
   {
     collection: 'apikeys',
+    versionKey: false,
   }
 );
 

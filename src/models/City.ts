@@ -9,6 +9,7 @@ const citySchema = new Schema(
   },
   {
     collection: 'cities',
+    versionKey: false,
     collation: { locale: 'en', strength: 2 },
     toObject: {
       transform: (doc, ret) => {
