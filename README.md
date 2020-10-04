@@ -1,5 +1,15 @@
 # Backend Challenge de Clima
 
+## Qué hace
+
+Devuelve el clima de la ciudad que elijas, con datos climáticos al azar, pero con coordenadas correctas, para ser utilizadas en un mapa.
+
+Obtiene los datos de las ciudades desde un dataset que cree en un shard de MongoDB atlas importando [cities.json](https://github.com/lutangar/cities.json)
+
+Tiene dos tipos de autorización, una por **jsonwebtokens**, que la uso para proteger todos los endpoints del sistema de usuarios, y
+**apikeys**, que son keys generadas usando la librería **uuid**, y almacenadas en otra colección de mongo, esas keys son usadas para proteger
+el endpoint principal, y los usuarios pueden generarlas, obtenerlas y revocarlas **(solamente las que les pertenecen)**
+
 ## Podes probar registrarte y generar tus propias llaves en esta interfaz:
 
 [Frontend de Sistema de usuarios del challenge](https://vagus-art.github.io/Challenge-Node-Weather-Users/#/)
@@ -11,16 +21,6 @@
 ## De todas formas podés usar la API REST con Postman usando este enlace:
 
 <https://node-weather-challenge.herokuapp.com/>
-
-## Qué hace
-
-Devuelve el clima de la ciudad que elijas, con datos climáticos al azar, pero con coordenadas correctas, para ser utilizadas en un mapa.
-
-Obtiene los datos de las ciudades desde un dataset que cree en un shard de MongoDB atlas importando [cities.json](https://github.com/lutangar/cities.json)
-
-Tiene dos tipos de autorización, una por **jsonwebtokens**, que la uso para proteger todos los endpoints del sistema de usuarios, y
-**apikeys**, que son keys generadas usando la librería **uuid**, y almacenadas en otra colección de mongo, esas keys son usadas para proteger
-el endpoint principal, y los usuarios pueden generarlas, obtenerlas y revocarlas **(solamente las que les pertenecen)**
 
 ## Librerías utilizadas
 
