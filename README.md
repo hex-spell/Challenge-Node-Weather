@@ -4,7 +4,9 @@
 
 [Frontend de Sistema de usuarios del challenge](https://vagus-art.github.io/Challenge-Node-Weather-Users/#/)
 
-- Si querés ver el código fuente, está en [este repo](https://github.com/Vagus-art/Challenge-Node-Weather-Users)
+- Recomiendo hacerlo ya que es una forma mas fácil de entender cómo funciona.
+- Por ahora no pide validación de mail, así que es un proceso rápido.
+- Si querés ver el código fuente, está en [este repo](https://github.com/Vagus-art/Challenge-Node-Weather-Users).
 
 ## De todas formas podés usar la API REST con Postman usando este enlace:
 
