@@ -106,7 +106,7 @@ En `/helpers` es donde guardo los errores que tiro usando `throw` desde cualquie
 
 Tiene un solo endpoint, devuelve los datos climáticos de la ciudad que elijas.
 
-#### Obtener Clima. [Get /weather?q={Ciudad}&appid={API Key}]
+#### Obtener Clima. [GET /weather?q={Ciudad}&appid={API Key}]
 
 - appid es un api key, no un jwt.
 
@@ -180,7 +180,7 @@ Rutas que se encargan de la manipulación de las keys de los usuarios.
 
             Authorization: Bearer {token}
 
-#### Obtener Keys. [Get /apikeys]
+#### Obtener Keys. [GET /apikeys]
 
 - Retorna todas las keys del usuario dentro del token.
 
@@ -190,7 +190,7 @@ Rutas que se encargan de la manipulación de las keys de los usuarios.
 
             Authorization: Bearer {token}
 
-#### Revocar Key. [Get /apikeys]
+#### Revocar Key. [GET /apikeys]
 
 - Elimina la key pasada por parámetros, solamente el usuario que es dueño de la key está autorizado a hacerlo.
 
