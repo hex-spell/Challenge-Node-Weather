@@ -190,7 +190,7 @@ Rutas que se encargan de la manipulación de las keys de los usuarios.
 
             Authorization: Bearer {token}
 
-#### Revocar Key. [GET /apikeys]
+#### Revocar Key. [DELETE /apikeys]
 
 - Elimina la key pasada por parámetros, solamente el usuario que es dueño de la key está autorizado a hacerlo.
 
